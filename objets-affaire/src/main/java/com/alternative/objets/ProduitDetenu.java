@@ -9,6 +9,9 @@ public class ProduitDetenu {
     @Id
     private long id;
 
+    @ManyToOne(fetch= FetchType.EAGER)
+    private Produit produit;
+
     @ManyToOne(fetch= FetchType.LAZY)
     private Usager usager;
 
@@ -21,6 +24,14 @@ public class ProduitDetenu {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     public Usager getUsager() {
