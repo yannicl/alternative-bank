@@ -49,3 +49,18 @@ L'infrastructure de la banque est découpée en microservice. Chaque "serveur" s
   * montant (tous les montants sont en $, la devise unique de la banque)
   * solde_avant_transaction
   * solde_apres_transaction
+  
+## Première réalisation
+
+* La gui utilise spring-mvc et les appels des microservices sont effectués côté serveur. Les pages sont rendues en JSP avec les données. Le login est effectué sur une base d'usager préétablie (9 usagers, username: user1-9 et password: pswd1-9)
+
+* aucune sécurité en place dans les microservices
+
+* aucun caching des données
+
+* la db est une db embedded dans chacun des store
+
+* Au niveau infra, seuls les serveurs suivants sont utilisés: 
+  * config-server
+  * log-server
+
