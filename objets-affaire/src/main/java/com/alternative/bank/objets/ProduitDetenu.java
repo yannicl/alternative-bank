@@ -1,12 +1,14 @@
-package com.alternative.objets;
+package com.alternative.bank.objets;
 
 
 import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
 public class ProduitDetenu {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @ManyToOne(fetch= FetchType.EAGER)

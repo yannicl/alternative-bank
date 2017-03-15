@@ -1,8 +1,10 @@
-package com.alternative.objets;
+package com.alternative.bank.objets;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Produit {
 
     @Id

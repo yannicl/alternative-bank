@@ -1,4 +1,4 @@
-package com.alternative.objets;
+package com.alternative.bank.objets;
 
 
 import javax.persistence.*;
@@ -6,11 +6,11 @@ import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-import static javax.swing.text.StyleConstants.Size;
-
+@Entity
 public class Transaction {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Temporal(TemporalType.TIMESTAMP)
