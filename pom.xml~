@@ -14,7 +14,6 @@
         <module>objets-affaire</module>
         <module>gui</module>
         <module>portrait-financier-store</module>
-        <module>usagers-store</module>
     </modules>
 
     <build>
