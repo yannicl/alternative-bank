@@ -1,5 +1,6 @@
 package com.alternative.bank.usagers;
 
+import com.alternative.bank.objets.Usager;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.webmvc.RepositoryRestController;

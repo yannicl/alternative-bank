@@ -4,7 +4,7 @@ package com.alternative.bank.objets;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 public class Transaction {

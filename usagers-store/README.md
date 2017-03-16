@@ -1,5 +1,5 @@
 ```
-curl http://localhos:8080/usagers
+curl http://localhost:8080/usagers
 
 {
   "_embedded" : {
@@ -31,7 +31,7 @@ curl -X POST -H "Content-Type:application/json" -d '{"username": "user-1", "pass
   }
 }
 
-curl http://localhos:8080/usagers/search
+curl http://localhost:8080/usagers/search
 
 
 {
