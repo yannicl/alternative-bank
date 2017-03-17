@@ -1,5 +1,6 @@
 package com.alternative.bank.gui.login;
 
+import com.alternative.bank.objets.Usager;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,9 +24,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-        if ("user1".equals(s)) {
-            // passwd is passwd1 in md5
-            return new User("user1", "79e262a81dd19d40ae008f74eb59edce", createUserAuthority());
+        Usager usager = retrieveUserFromStore(s);
+
+        if (usager != null) {
+            return new User(usager.getUsername(), usager.getPassword(), createUserAuthority());
         } else {
             throw new UsernameNotFoundException("invalid user");
         }
@@ -37,6 +40,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         authorities.add(grantedAuthority);
 
         return authorities;
+    }
+
+    private Usager retrieveUserFromStore(String username) {
+        RestTemplate restTemplate = new RestTemplate();
+        Usager usager = restTemplate.getForObject("http://localhost:8871/usagers/search/findFirstByUsername?username={username}", Usager.class, username);
+        return usager;
     }
 
 }
