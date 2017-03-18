@@ -17,6 +17,7 @@
         <module>portrait-financier-store</module>
         <module>usagers-store</module>
         <module>eureka-service</module>
+        <module>zipkin-service</module>
     </modules>
 
     <build>

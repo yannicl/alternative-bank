@@ -2,6 +2,8 @@ package com.alternative.bank.gui.login;
 
 import com.alternative.bank.api.usagers.UsagersApi;
 import com.alternative.bank.objets.Usager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +23,8 @@ import java.util.Set;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private static Logger log = LoggerFactory.getLogger(CustomUserDetailsService.class);
+
     @Autowired
     UsagersApi usagersApi;
 
@@ -30,8 +34,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         Usager usager = retrieveUserFromStore(s);
 
         if (usager != null) {
+            log.info("Successful login for " + usager.getUsername());
             return new User(usager.getUsername(), usager.getPassword(), createUserAuthority());
         } else {
+            log.warn("Login failed for " + s);
             throw new UsernameNotFoundException("invalid user");
         }
 

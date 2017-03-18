@@ -1,6 +1,8 @@
 package com.alternative.bank.usagers;
 
 import com.alternative.bank.objets.Usager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -9,6 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableEurekaClient
 public class UsagersStoreApplication {
+
+	private static Logger log = LoggerFactory.getLogger(UsagersStoreApplication.class);
 
 	UsagersStoreApplication(UsagersRepository repository) {
 		Usager user1 = new Usager();
@@ -19,5 +23,6 @@ public class UsagersStoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UsagersStoreApplication.class, args);
+		log.info("Usagers store started");
 	}
 }
