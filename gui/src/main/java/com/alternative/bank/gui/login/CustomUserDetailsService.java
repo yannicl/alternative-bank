@@ -1,6 +1,8 @@
 package com.alternative.bank.gui.login;
 
+import com.alternative.bank.api.usagers.UsagersApi;
 import com.alternative.bank.objets.Usager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,7 +21,8 @@ import java.util.Set;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
-
+    @Autowired
+    UsagersApi usagersApi;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -43,9 +46,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private Usager retrieveUserFromStore(String username) {
-        RestTemplate restTemplate = new RestTemplate();
-        Usager usager = restTemplate.getForObject("http://localhost:8871/usagers/search/findFirstByUsername?username={username}", Usager.class, username);
-        return usager;
+        return usagersApi.findUsagerByUsername(username);
     }
 
 }

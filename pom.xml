@@ -12,9 +12,11 @@
 
     <modules>
         <module>objets-affaire</module>
+        <module>api</module>
         <module>gui</module>
         <module>portrait-financier-store</module>
         <module>usagers-store</module>
+        <module>eureka-service</module>
     </modules>
 
     <build>
