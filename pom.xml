@@ -18,6 +18,7 @@
         <module>usagers-store</module>
         <module>eureka-service</module>
         <module>zipkin-service</module>
+        <module>oauth2-service</module>
     </modules>
 
     <build>
