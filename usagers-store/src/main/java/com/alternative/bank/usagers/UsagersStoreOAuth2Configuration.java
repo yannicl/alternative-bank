@@ -3,6 +3,7 @@ package com.alternative.bank.usagers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -25,9 +26,10 @@ public class UsagersStoreOAuth2Configuration extends ResourceServerConfigurerAda
     @Override
     public void configure(final HttpSecurity http) throws Exception {
         // @formatter:off
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
                 .regexMatchers("/").anonymous() // required for ribbon health check
-                .anyRequest().hasRole("usagers-read")
+                .regexMatchers(HttpMethod.GET, "/.*").hasRole("usagers-read")
+                .anyRequest().denyAll()
         ;
         // @formatter:on
     }
