@@ -1,5 +1,7 @@
 package com.alternative.bank.usagers;
 
+import org.apache.catalina.filters.RequestDumperFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.persistence.EntityManagerFactory;
+import javax.servlet.Filter;
 import javax.sql.DataSource;
 
 /**
@@ -46,5 +49,14 @@ public class UsagersStoreConfiguration {
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
+    }
+
+    @Bean
+    public FilterRegistrationBean requestDumperFilter() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        Filter requestDumperFilter = new RequestDumperFilter();
+        registration.setFilter(requestDumperFilter);
+        registration.addUrlPatterns("/*");
+        return registration;
     }
 }

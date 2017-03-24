@@ -1,6 +1,7 @@
 package com.alternative.bank.gui.login;
 
-import com.alternative.bank.api.usagers.UsagersApi;
+import com.alternative.bank.api.oauth2.OAuth2TokenService;
+import com.alternative.bank.api.usagers.UsagersApiService;
 import com.alternative.bank.objets.Usager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,18 +26,23 @@ public class CustomUserDetailsService implements UserDetailsService {
     private static Logger log = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
     @Autowired
-    UsagersApi usagersApi;
+    UsagersApiService usagersApiService;
+
+    @Autowired
+    OAuth2TokenService oAuth2TokenService;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Usager usager = retrieveUserFromStore(s);
+        // check username against rules (regex)
+
+        Usager usager = usagersApiService.findUsagerByUsername(username);
 
         if (usager != null) {
             log.info("Successful login for " + usager.getUsername());
             return new User(usager.getUsername(), usager.getPassword(), createUserAuthority());
         } else {
-            log.warn("Login failed for " + s);
+            log.warn("Login failed for " + username);
             throw new UsernameNotFoundException("invalid user");
         }
 
@@ -51,8 +56,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         return authorities;
     }
 
-    private Usager retrieveUserFromStore(String username) {
-        return usagersApi.findUsagerByUsername(username);
-    }
 
 }

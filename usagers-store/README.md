@@ -47,7 +47,7 @@ curl http://localhost:8871/usagers/search
 }
 
 
-curl http://localhost:8871/usagers/search/findFirstByUsername?username=user-1
+curl http://localhost:8871/usagers/search/findFirstByUsername?username=user1
 
 
 {

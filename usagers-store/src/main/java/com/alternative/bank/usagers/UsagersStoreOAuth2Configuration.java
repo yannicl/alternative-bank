@@ -26,6 +26,7 @@ public class UsagersStoreOAuth2Configuration extends ResourceServerConfigurerAda
     public void configure(final HttpSecurity http) throws Exception {
         // @formatter:off
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
+                .regexMatchers("/").anonymous() // required for ribbon health check
                 .anyRequest().hasRole("usagers-read")
         ;
         // @formatter:on
