@@ -11,11 +11,9 @@ public class ProduitDetenu {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(fetch= FetchType.EAGER)
-    private Produit produit;
+    private String codeProduit;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    private Usager usager;
+    private long usagerId;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAcquisition;
@@ -28,20 +26,20 @@ public class ProduitDetenu {
         this.id = id;
     }
 
-    public Produit getProduit() {
-        return produit;
+    public String getCodeProduit() {
+        return codeProduit;
     }
 
-    public void setProduit(Produit produit) {
-        this.produit = produit;
+    public void setCodeProduit(String codeProduit) {
+        this.codeProduit = codeProduit;
     }
 
-    public Usager getUsager() {
-        return usager;
+    public long getUsager() {
+        return usagerId;
     }
 
-    public void setUsager(Usager usager) {
-        this.usager = usager;
+    public void setUsager(long usagerId) {
+        this.usagerId = usagerId;
     }
 
     public Date getDateAcquisition() {
