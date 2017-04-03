@@ -2,6 +2,7 @@ package com.alternative.bank.objets;
 
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -18,12 +19,14 @@ public class ProduitDetenu {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAcquisition;
 
-    public long getId() {
-        return id;
-    }
+    private BigDecimal solde;
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getCodeProduit() {
@@ -34,11 +37,11 @@ public class ProduitDetenu {
         this.codeProduit = codeProduit;
     }
 
-    public long getUsager() {
+    public long getUsagerId() {
         return usagerId;
     }
 
-    public void setUsager(long usagerId) {
+    public void setUsagerId(long usagerId) {
         this.usagerId = usagerId;
     }
 
@@ -48,5 +51,13 @@ public class ProduitDetenu {
 
     public void setDateAcquisition(Date dateAcquisition) {
         this.dateAcquisition = dateAcquisition;
+    }
+
+    public BigDecimal getSolde() {
+        return solde;
+    }
+
+    public void setSolde(BigDecimal solde) {
+        this.solde = solde;
     }
 }

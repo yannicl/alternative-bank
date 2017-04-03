@@ -18,12 +18,12 @@ public class Usager {
     @Size(max = 80)
     private String password;
 
-    public long getId() {
-        return id;
-    }
-
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getUsername() {

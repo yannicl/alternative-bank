@@ -33,7 +33,7 @@ public class PortraitFinancierStoreOAuth2Configuration extends ResourceServerCon
         // @formatter:off
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
                 .regexMatchers("/").anonymous() // required for ribbon health check
-                .regexMatchers(HttpMethod.GET, "/.*").hasRole("portrait-financier-read")
+                .regexMatchers(HttpMethod.GET, "/.*").anonymous()//.hasRole("portrait-financier-read")
                 .anyRequest().denyAll()
         ;
         // @formatter:on
