@@ -19,14 +19,12 @@ public class ProduitDetenuResource extends ResourceSupport {
 
     public ProduitDetenuResource(ProduitDetenu produitDetenu) {
         setCodeProduit(produitDetenu.getCodeProduit());
-        setDateAcquisition(produitDetenu.getDateAcquisition());
         setSolde(produitDetenu.getSolde());
         add(linkTo(methodOn(PortraitFinancierController.class).getTransactions(produitDetenu.getId(), null, null)).withRel("trx.search"));
     }
 
     private String codeProduit;
 
-    private Date dateAcquisition;
 
     private BigDecimal solde;
 
@@ -36,14 +34,6 @@ public class ProduitDetenuResource extends ResourceSupport {
 
     public void setCodeProduit(String codeProduit) {
         this.codeProduit = codeProduit;
-    }
-
-    public Date getDateAcquisition() {
-        return dateAcquisition;
-    }
-
-    public void setDateAcquisition(Date dateAcquisition) {
-        this.dateAcquisition = dateAcquisition;
     }
 
     public BigDecimal getSolde() {
