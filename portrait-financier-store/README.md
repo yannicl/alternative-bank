@@ -7,7 +7,7 @@ DEMO
 
 - Preparation, désactiver la sécurité dans module PortraitFinancierStoreOAuth2Configuration
 
-curl -v "http://localhost:8872/portraits/usagers/1/detention"
+curl -v "http://localhost:8872/usagers/1/detention"
 
 - remarquer header application/hal+json
 - remarquer _links
